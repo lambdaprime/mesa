@@ -1,0 +1,13 @@
+Mesa - customization of Emacs for Windows and Linux. It contains definition of some additional hot keys for different modes, settings, interactive functions and so on.
+
+lambdaprime <id.blackmesa@gmail.com>
+
+* Install
+
+Put following line to the ~/.emacs file:
+
+#+BEGIN_EXAMPLE
+(add-to-list 'load-path "path_to_mesa")
+(load "loader")
+#+END_EXAMPLE
+
