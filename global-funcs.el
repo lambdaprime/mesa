@@ -32,13 +32,19 @@
   (interactive)
   "Formats selected json and makes it look pretty"
   (shell-command-on-region (region-beginning) (region-end)
-    format-json-cmd (current-buffer) t))
+    (format "java -jar %s -json" pretty-printer-path) (current-buffer) t))
+
+(defun html-pretty-print ()
+  (interactive)
+  "Formats selected html and makes it look pretty"
+  (shell-command-on-region (region-beginning) (region-end)
+    (format "java -jar %s -html" pretty-printer-path) (current-buffer) t))
 
 (defun xml-pretty-print ()
   (interactive)
   "Formats selected xml and makes it look pretty"
   (shell-command-on-region (region-beginning) (region-end)
-    format-xml-cmd (current-buffer) t))
+    (format "java -jar %s -xml" pretty-printer-path) (current-buffer) t))
 
 (defun pre ()
   "Wraps selected text into <pre> </pre>"

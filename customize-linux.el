@@ -31,6 +31,5 @@
 ;(setq x-select-enable-clipboard t)
 ;(setq x-select-enable-primary t)
 
-(setq format-json-cmd "python -mjson.tool")
-(setq format-xml-cmd "xmlindent")
+(setq pretty-printer-path "~/local/jar/pretty-printer.jar")
 
