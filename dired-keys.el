@@ -267,7 +267,7 @@ Opens selected drive in dired in new window."
 (define-key dired-mode-map [(control p)] (lambda () 
   "Copy current directory name to clipboard."
   (interactive)
-  (copy-to-clipboard (dired-current-directory))))
+  (copy-to-clipboard (dired-get-filename 'no-dir))))
 
 (define-key dired-mode-map [(control P)] (lambda () 
   "Copy full path to currently selected file to clipboard."
