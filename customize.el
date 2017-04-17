@@ -49,9 +49,12 @@
 
 ;; use ido for buffer switching
 (ido-mode 1)
-
+(setq ido-save-directory-list-file nil)
 ;; display any item that contains the chars you typed
 (setq ido-enable-flex-matching t)
+
+;; auto-save in the file itself rather than into auto-save directory
+(setq auto-save-visited-file-name t)
 
 (custom-set-variables
  '(blink-cursor-mode nil)
