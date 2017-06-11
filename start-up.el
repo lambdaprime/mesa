@@ -28,3 +28,5 @@
 (if (eq system-type 'windows-nt)
   (load "start-up-win32.el"))
 
+(add-hook 'kill-emacs-hook (lambda () 
+  (delete-directory "~/.emacs.d/auto-save-list" t nil)))
