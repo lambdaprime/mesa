@@ -189,3 +189,5 @@ passed then the current command is preserved."
 
 ;; highlight parenthesis
 (show-paren-mode t)
+
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)

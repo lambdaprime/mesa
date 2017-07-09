@@ -29,7 +29,8 @@
   (load "start-up-win32.el"))
 
 (defun auto-save-cleanup () 
-  (delete-directory "~/.emacs.d/auto-save-list" t nil))
+  (delete-directory "~/.emacs.d/auto-save-list" t nil)
+  (make-directory "~/.emacs.d/auto-save-list"))
 
 (add-hook 'kill-emacs-hook 'auto-save-cleanup)
 (run-at-time nil 600 'auto-save-cleanup)

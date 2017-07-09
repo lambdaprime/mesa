@@ -40,7 +40,11 @@ fields which we need."
 (ad-activate 'ls-lisp-format t)
 
 (defadvice ediff-buffers (around my-ediff-buffers (arg1 arg2))
-  (switch-to-buffer-other-frame (current-buffer))
+  (select-frame (make-frame))
+  (split-window-vertically)
+  (switch-to-buffer arg2)
+  (next-window)
+  (switch-to-buffer arg1)
   ad-do-it)
 (ad-activate 'ediff-buffers t)
 
