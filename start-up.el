@@ -28,5 +28,8 @@
 (if (eq system-type 'windows-nt)
   (load "start-up-win32.el"))
 
-(add-hook 'kill-emacs-hook (lambda () 
-  (delete-directory "~/.emacs.d/auto-save-list" t nil)))
+(defun auto-save-cleanup () 
+  (delete-directory "~/.emacs.d/auto-save-list" t nil))
+
+(add-hook 'kill-emacs-hook 'auto-save-cleanup)
+(run-at-time nil 600 'auto-save-cleanup)

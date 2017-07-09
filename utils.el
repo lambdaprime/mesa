@@ -138,3 +138,15 @@ d:/Program Files/GnuWin32 => /cygdrive/d/Program Files/GnuWin32"
   (require 'dired-aux)
   (dolist (buffer (dired-buffers-for-dir dwim-target))
     (with-current-buffer buffer (revert-buffer))))
+
+(defun copy-line ()
+  (interactive)
+  (kill-ring-save (point-at-bol) (point-at-eol))
+  (message "1 line copied"))
+
+(defun current-line()
+  "Returns text of the current line"
+  (beginning-of-line)
+  (let ((s (point)))
+    (end-of-line)
+    (buffer-substring-no-properties s (point))))

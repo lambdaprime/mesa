@@ -187,3 +187,5 @@ passed then the current command is preserved."
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+;; highlight parenthesis
+(show-paren-mode t)

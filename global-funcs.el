@@ -78,3 +78,17 @@
     (replace-match "\n" nil t)
     (goto-line 0)))
 
+(defun shell-here ()
+  "Replaces selected region with shell command output"
+  (interactive)
+  (shell-command-on-region (region-beginning) (region-end)
+   (read-shell-command "Shell command: ") (current-buffer) t))
+
+(defun shell-it ()
+  "Runs selected region in a shell or if nothing is selected runs current line content."
+  (interactive)
+  (if (not (use-region-p))
+    (async-shell-command (current-line))
+    (progn
+      (kill-ring-save (region-beginning) (region-end))
+      (async-shell-command (clipboard-content)))))
