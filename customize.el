@@ -182,6 +182,7 @@ passed then the current command is preserved."
 (epa-file-enable)
 (setq epa-file-name-regexp "\\.\\(gpg\\)$")
 (epa-file-name-regexp-update)
+(setq epa-file-cache-passphrase-for-symmetric-encryption nil)
 
 (put 'erase-buffer 'disabled nil)
 (put 'upcase-region 'disabled nil)

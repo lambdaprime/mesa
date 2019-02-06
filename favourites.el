@@ -21,4 +21,6 @@
   ("download" . "~/Downloads/")
   ("workspace" . "~/workspace/")
   ("tmp" . "~/tmp/")
+  ("src" . "~/src/")
+  ("storage" . "~/storage/")
 ))

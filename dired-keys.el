@@ -85,7 +85,7 @@ subprocess."
 	(start-process 
 	  "dired-process"
           output-buffer-name
-	  "run-mailcap"
+	  "xdg-open"
 	  (dired-get-filename)))))
    (dired-map-over-marks (my-execute) nil)))
 
