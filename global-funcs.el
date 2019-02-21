@@ -92,3 +92,9 @@
     (progn
       (kill-ring-save (region-beginning) (region-end))
       (async-shell-command (clipboard-content)))))
+
+(defun ps-java()
+  "Types command which shows active Java processes"
+  (interactive)
+  (fset 'li "which jcmd && jcmd || ps aux | grep java\r")
+  (execute-kbd-macro 'li))

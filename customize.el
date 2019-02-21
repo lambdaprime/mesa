@@ -72,6 +72,8 @@
  '(tool-bar-mode nil)
  '(org-support-shift-select t)
  '(org-replace-disputed-keys t)
+ ;; do not put silent newline into files on save
+ '(mode-require-final-newline nil)
  '(Buffer-menu-mode-width 2)
  '(Buffer-menu-buffer+size-width 15))
 
@@ -192,3 +194,6 @@ passed then the current command is preserved."
 (show-paren-mode t)
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; unlimited buffer size in term-mode
+(setq term-buffer-maximum-size 0)
