@@ -52,6 +52,12 @@
   (kill-region (region-beginning) (region-end))
   (insert (format "<pre>%s</pre>" (clipboard-content))))
 
+(defun cmd ()
+  "Wraps selected text into <cmd> </cmd>"
+  (interactive)
+  (kill-region (region-beginning) (region-end))
+  (insert (format "<cmd>%s</cmd>" (clipboard-content))))
+
 (defun ul ()
   "Wraps selected text into <pre> </pre>"
   (interactive)
