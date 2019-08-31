@@ -121,6 +121,7 @@
 ;; set short answers for yes/no questions
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(global-display-line-numbers-mode t)
 (global-auto-revert-mode t)
 (setq-default indent-tabs-mode nil)
 

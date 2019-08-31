@@ -120,3 +120,9 @@ preserve your windows arrangement after calling it."
         (other-window -1)))))
 (ad-activate 'dired-do-async-shell-command t)
 
+(defadvice yank (around my-yank)
+  "In term mode CUA is not working"
+  (if (eq major-mode 'term-mode)
+      (term-paste)
+    ad-do-it))
+(ad-activate 'yank t)

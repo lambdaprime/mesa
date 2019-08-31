@@ -23,4 +23,5 @@
   ("tmp" . "~/tmp/")
   ("src" . "~/src/")
   ("storage" . "~/storage/")
+  ("materials" . "~/materials/")
 ))
