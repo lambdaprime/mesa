@@ -104,3 +104,23 @@
   (interactive)
   (fset 'li "which jcmd && jcmd || ps aux | grep java\r")
   (execute-kbd-macro 'li))
+
+(defun 2-terminals()
+  "Opens two windows with term-mode running"
+  (interactive)
+  (delete-other-windows)
+  (term "/bin/zsh")
+  (rename-buffer "term1")
+  (split-window-horizontally)
+  (other-window 1)
+  (term "/bin/zsh")
+  (rename-buffer "term2"))
+
+(defun 4-windows()
+  "Opens four windows"
+  (interactive)
+  (delete-other-windows)
+  (split-window-horizontally)
+  (split-window-vertically)
+  (other-window 2)
+  (split-window-vertically))
