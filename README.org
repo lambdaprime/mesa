@@ -11,3 +11,8 @@ Put following line to the ~/.emacs file:
 (load "loader")
 #+END_EXAMPLE
 
+* Windows prerequisites
+
+- FilePropertiesDialog
+- HardDrivesMenu
+- cwRsync

@@ -17,11 +17,14 @@
 ;;
 ;;
 
-(setq favourites '(
-  ("download" . "~/Downloads/")
-  ("workspace" . "~/workspace/")
-  ("tmp" . "~/tmp/")
-  ("src" . "~/src/")
-  ("storage" . "~/storage/")
-  ("materials" . "~/materials/")
-))
+(setq home (if (eq system-type 'windows-nt)
+  (concat "C:/Users/" (getenv "USERNAME"))
+  "~"))
+
+(setq favourites '())
+(add-to-list 'favourites (cons "download" (concat home "/Downloads/")))
+(add-to-list 'favourites (cons "workspace" (concat home "/workspace/")))
+(add-to-list 'favourites (cons "tmp" (concat home "/tmp/")))
+(add-to-list 'favourites (cons "src" (concat home "/src/")))
+(add-to-list 'favourites (cons "storage" (concat home "/storage/")))
+(add-to-list 'favourites (cons "materials" (concat home "/materials/")))
