@@ -299,10 +299,10 @@ Opens selected drive in dired in new window."
   (if (string= find-expression "")
     (find-dired "." (format "-name \"%s\"" file-mask))
     (if (string= file-mask "")
-      (grep-find (format "grep --exclude=\"*\.svn*\" -r -n \"%s\" -s *" find-expression ))
+      (grep-find (format "grep --exclude=\"*\.svn*\" -r -n -i \"%s\" -s *" find-expression ))
       (grep-find 
         (format 
-          "find -type f -name \"%s\" -exec grep -r -H -n \"%s\" {} \";\""
+          "find -type f -name \"%s\" -exec grep -r -H -i -n \"%s\" {} \";\""
           file-mask 
           find-expression))))))
 
