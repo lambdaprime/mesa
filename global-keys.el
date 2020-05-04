@@ -28,10 +28,14 @@
 (global-set-key [(control shift a)] 'mark-whole-buffer)
 (global-set-key [(control d)] 'kill-whole-line)
 (global-set-key [(delete)] 'delete-char)
+(global-set-key [(control +)] 'text-scale-increase)
+(global-set-key [(control -)] 'text-scale-decrease)
 
 (add-hook 'java-mode-hook (lambda ()
   (define-key java-mode-map "\C-d"
     'kill-whole-line)))
+
+;; HTML
 
 (fset 'h1
    [home ?< ?h ?1 ?> end ?< ?/ ?h ?1 ?>])
@@ -82,32 +86,26 @@
           (return-from loop))))))))
 
 ;; buffer navigation keys
+
 ; page up
 (global-set-key [M-prior] 'previous-buffer)
 ; page down
 (global-set-key [M-next] 'next-buffer)
+
 (global-set-key "\C-xb" 'ido-switch-buffer)
 (global-set-key "\C-xf" 'favourite)
+
 (global-set-key "\C-b" (lambda ()
   (interactive)
   (ibuffer)
   (ibuffer-jump-top-line)))
+
 (global-set-key "\C-\M-b" (lambda ()
   (interactive)
   (when (= (length (window-list)) 1)
     (split-window-horizontally))
   (other-window 1)
   (ibuffer)))
-
-;; window navigation keys
-(global-set-key [M-left] 'windmove-left)
-(global-set-key [M-right] 'windmove-right)
-(global-set-key [M-up] 'windmove-up)
-(global-set-key [M-down] 'windmove-down)
-(global-set-key [C-tab] 'other-frame)
-(global-set-key [(control shift tab)] (lambda ()
-  (interactive)
-  (other-frame -1)))
 
 ;; org keys
 
@@ -117,7 +115,26 @@
 (define-key org-mode-map [M-right] 'windmove-right)
 (define-key org-mode-map [M-left] 'windmove-left)
 
+;; Window navigation keys
+
+(global-set-key [M-left] 'windmove-left)
+(global-set-key [M-right] 'windmove-right)
+(global-set-key [M-up] 'windmove-up)
+(global-set-key [M-down] 'windmove-down)
+(global-set-key [C-tab] 'other-frame)
+(global-set-key [(control shift tab)] (lambda ()
+  (interactive)
+  (other-frame -1)))
+
+;; Window enumeration id depends on how frame was split.
+;; For 4-window mode it is:
+;;
+;;  1 | 3
+;;  -----
+;;  2 | 4
+;;
 (defun switch-to-window(id)
+  "Jump to window with a given id"
   (ignore-errors (while (windmove-left)))
   (ignore-errors (while (windmove-up)))
   (when (< id (length (window-list)))
@@ -125,7 +142,12 @@
       (while (not (eql (selected-window) dst-win))
         (other-window 1) ))))
 
+;; keys for fast switch to exact window
 (global-set-key (kbd "<kp-1>") (lambda ()
+  (interactive)
+  (switch-to-window 0)))
+
+(global-set-key (kbd "C-1") (lambda ()
   (interactive)
   (switch-to-window 0)))
 
@@ -133,7 +155,15 @@
   (interactive)
   (switch-to-window 1)))
 
+(global-set-key (kbd "C-2") (lambda ()
+  (interactive)
+  (switch-to-window 1)))
+
 (global-set-key (kbd "<kp-3>") (lambda ()
+  (interactive)
+  (switch-to-window 2)))
+
+(global-set-key (kbd "C-3") (lambda ()
   (interactive)
   (switch-to-window 2)))
 
@@ -141,11 +171,23 @@
   (interactive)
   (switch-to-window 3)))
 
+(global-set-key (kbd "C-4") (lambda ()
+  (interactive)
+  (switch-to-window 3)))
+
 (global-set-key (kbd "<kp-5>") (lambda ()
   (interactive)
   (switch-to-window 4)))
 
+(global-set-key (kbd "C-5") (lambda ()
+  (interactive)
+  (switch-to-window 4)))
+
 (global-set-key (kbd "<kp-6>") (lambda ()
+  (interactive)
+  (switch-to-window 5)))
+
+(global-set-key (kbd "C-6") (lambda ()
   (interactive)
   (switch-to-window 5)))
 
