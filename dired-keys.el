@@ -355,16 +355,14 @@ Opens selected drive in dired in new window."
   (revert-buffer)))
 
 (define-key dired-mode-map "C" (lambda () 
-  "Async copy with progress bar in *rsync* buffer"
+  "Async copy with progress bar in *cp* buffer"
   (interactive)
   (defun my-dired-do-copy ()
     (setq source-list 
       (concat 
         source-list 
-        " \"" 
-        (if (eq system-type 'windows-nt) 
-          (cygwin-path (dired-get-filename))
-          (dired-get-filename))
+        " \""
+        (dired-get-filename)
         "\"")))
   (require 'dired-aux)
   (setq source-list "")
@@ -376,17 +374,13 @@ Opens selected drive in dired in new window."
   (setq dired-dst
     (expand-file-name 
       (read-file-name "Copy to: " (dired-dwim-target-directory))))
-  (setq dst
-    (if (eq system-type 'windows-nt) 
-      (cygwin-path dired-dst)
-      dired-dst))
+  (setq dst dired-dst)
   (set-process-sentinel
     (start-process-shell-command
-      "rsync"
-      "*rsync*"
-      (format "rsync -rPp %s %s" source-list 
+      "cp"
+      "*cp*"
+      (format "cp -rf %s %s" source-list 
         (shell-quote-argument dst)))
     (lambda (p e) (when (not (equal (process-status p) 'run)) (progn
       (dired-unmark-all-marks)
       (dired-update-dwim-target-buffer dired-dst)))))))
-

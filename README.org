@@ -1,6 +1,6 @@
 Mesa - customization of Emacs for Windows and Linux. It contains definition of some additional hot keys for different modes, settings, interactive functions and so on.
 
-lambdaprime <id.blackmesa@gmail.com>
+lambdaprime <intid@protonmail.com>
 
 * Install
 
@@ -13,6 +13,6 @@ Put following line to the ~/.emacs file:
 
 * Windows prerequisites
 
-- FilePropertiesDialog
-- HardDrivesMenu
-- cwRsync
+- git-bash (with all Unix tools from <GIT_BASH>/usr/bin available in %PATH%)
+- FilePropertiesDialog (optional)
+- HardDrivesMenu (optional)

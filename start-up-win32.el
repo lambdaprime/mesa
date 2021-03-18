@@ -30,8 +30,4 @@
 ;(server-start)
 
 (delete-other-windows)
-(dired "c:/")
-(split-window-horizontally)
-(other-window 1)
-(dired "d:/")
-
+(dired "~")
