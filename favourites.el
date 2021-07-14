@@ -28,3 +28,5 @@
 (add-to-list 'favourites (cons "src" (concat home "/src/")))
 (add-to-list 'favourites (cons "storage" (concat home "/storage/")))
 (add-to-list 'favourites (cons "materials" (concat home "/materials/")))
+(add-to-list 'favourites (cons "opt" (concat home "/opt/")))
+(add-to-list 'favourites (cons "shared" (concat home "/shared/")))
