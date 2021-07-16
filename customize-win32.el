@@ -27,9 +27,12 @@
 
 ;;; Code:
 
-(setq format-json-cmd "perl ~/.emacs.d/mesa/json_pp.pl")
-(setq format-xml-cmd "xmllint --format -")
+(setq pretty-printer-path (concat (getenv "UserProfile") "/opt/pretty-printer.jar"))
 
 ; try to improve slow performance on windows.
 (setq w32-get-true-file-attributes nil)
 
+;; On Windows org-mode behaves differently from Linux and
+;; it expands everything when file is opened.
+;; Adding a hook which will collapse everything back.
+(add-hook 'org-mode-hook 'org-overview)

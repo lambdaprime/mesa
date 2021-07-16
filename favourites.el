@@ -18,7 +18,7 @@
 ;;
 
 (setq home (if (eq system-type 'windows-nt)
-  (concat "C:/Users/" (getenv "USERNAME"))
+  (getenv "UserProfile")
   "~"))
 
 (setq favourites '())
@@ -30,3 +30,4 @@
 (add-to-list 'favourites (cons "materials" (concat home "/materials/")))
 (add-to-list 'favourites (cons "opt" (concat home "/opt/")))
 (add-to-list 'favourites (cons "shared" (concat home "/shared/")))
+(add-to-list 'favourites (cons "orgs" (concat home "/Documents/artifacts/orgs")))
