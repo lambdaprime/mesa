@@ -355,7 +355,7 @@ Opens selected drive in dired in new window."
   (revert-buffer)))
 
 (define-key dired-mode-map "C" (lambda () 
-  "Async copy with progress bar in *cp* buffer"
+  "Async copy with progress bar in *cp* buffer. Ordinary dired copy will block Emacs session until copy completes"
   (interactive)
   (defun my-dired-do-copy ()
     (setq source-list 
@@ -375,12 +375,20 @@ Opens selected drive in dired in new window."
     (expand-file-name 
       (read-file-name "Copy to: " (dired-dwim-target-directory))))
   (setq dst dired-dst)
+  (setq isOverSsh (string-starts-with dst "/ssh"))
+  (setq cmd (if isOverSsh
+    (format "scp %s %s" source-list
+        (shell-quote-argument (substring dst 5)))
+    (format "cp -rf %s %s" source-list 
+        (shell-quote-argument dst))))
+  (message cmd)
   (set-process-sentinel
     (start-process-shell-command
-      "cp"
+      cmd
       "*cp*"
-      (format "cp -rf %s %s" source-list 
-        (shell-quote-argument dst)))
+      cmd)
     (lambda (p e) (when (not (equal (process-status p) 'run)) (progn
       (dired-unmark-all-marks)
-      (dired-update-dwim-target-buffer dired-dst)))))))
+      (dired-update-dwim-target-buffer dired-dst)))
+      (message "Copy completed!")))
+  (if isOverSsh (process-send-string "*cp*" (format "%s\n" (read-passwd "Secret: "))))))
