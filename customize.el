@@ -107,7 +107,7 @@
 
 ;; visit file or directory in current dired buffer 
 ;; instead of creating a new one
-;(put 'dired-find-alternate-file 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)
 
 (setq 
   ls-lisp-use-localized-time-format t
@@ -121,7 +121,14 @@
 ;; set short answers for yes/no questions
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; CAUTION!!!
+;;
+;; This may cause issues in latest versions of Emacs:
+;; https://lists.gnu.org/archive/html/bug-gnu-emacs/2021-11/msg01335.html
+;; With line number enabled the zsh in term-mode prints "Args out of range"
+;; and stops working
 (global-display-line-numbers-mode t)
+
 (global-auto-revert-mode t)
 (setq-default indent-tabs-mode nil)
 
