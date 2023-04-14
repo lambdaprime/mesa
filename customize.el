@@ -105,6 +105,15 @@
       (background light)) 
      (:background "gray20")))))
 
+;; Color for blocks in org-mode by default very dark, changing it to be more lighter
+(custom-set-faces
+ '(org-block-begin-line
+   ((t (:underline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF" :extend t))))
+ '(org-block
+   ((t (:background "#EFF0F1" :extend t))))
+ '(org-block-end-line
+   ((t (:overline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF" :extend t)))))
+
 ;; visit file or directory in current dired buffer 
 ;; instead of creating a new one
 (put 'dired-find-alternate-file 'disabled nil)
