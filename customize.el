@@ -110,7 +110,7 @@
  '(org-block-begin-line
    ((t (:underline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF" :extend t))))
  '(org-block
-   ((t (:background "#EFF0F1" :extend t))))
+   ((t (:background "#b9b6ac" :extend t))))
  '(org-block-end-line
    ((t (:overline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF" :extend t)))))
 
@@ -214,3 +214,8 @@ passed then the current command is preserved."
 
 ;; unlimited buffer size in term-mode
 (setq term-buffer-maximum-size 0)
+
+;; markdown file extension
+(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
