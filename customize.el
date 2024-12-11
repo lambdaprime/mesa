@@ -36,6 +36,8 @@
 ;; enabling ls-lisp
 (setq ls-lisp-use-insert-directory-program nil)
 
+(prefer-coding-system 'utf-8-unix)
+
 ;; prevent from splitting the windows
 (setq split-height-threshold 1200)
 (setq split-width-threshold 2000)
@@ -219,3 +221,11 @@ passed then the current command is preserved."
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; ellama
+(setopt ellama-language "English")
+(setopt ellama-auto-scroll t)
+(require 'llm-ollama)
+(setopt ellama-provider
+  (make-llm-ollama
+    :chat-model "mistral" :embedding-model "mistral"))
