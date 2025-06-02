@@ -74,6 +74,7 @@
  '(tool-bar-mode nil)
  '(org-support-shift-select t)
  '(org-replace-disputed-keys t)
+ '(org-startup-folded t)
  ;; do not put silent newline into files on save
  '(mode-require-final-newline nil)
  '(Buffer-menu-mode-width 2)
@@ -225,7 +226,12 @@ passed then the current command is preserved."
 ;; ellama
 (setopt ellama-language "English")
 (setopt ellama-auto-scroll t)
+(setopt ellama-session-auto-save nil)
 (require 'llm-ollama)
-(setopt ellama-provider
-  (make-llm-ollama
-    :chat-model "mistral" :embedding-model "mistral"))
+(setq default-llm (make-llm-ollama
+  :chat-model "mistral" :embedding-model "mistral"))
+(setopt ellama-provider default-llm)
+(setopt ellama-providers
+  '(("mistral" . default-llm)
+    ("llama3.1:8b" . (make-llm-ollama
+     :chat-model "llama3.1:8b" :embedding-model "llama3.1:8b"))))
