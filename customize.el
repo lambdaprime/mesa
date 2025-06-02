@@ -235,3 +235,12 @@ passed then the current command is preserved."
   '(("mistral" . default-llm)
     ("llama3.1:8b" . (make-llm-ollama
      :chat-model "llama3.1:8b" :embedding-model "llama3.1:8b"))))
+
+;; shell-mode
+
+(require 'shell)
+
+(define-key shell-mode-map [(control P)] (lambda () 
+  "Copy full path to currently selected file to clipboard."
+  (interactive)
+  (copy-to-clipboard (file-truename default-directory))))
