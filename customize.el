@@ -224,20 +224,24 @@ passed then the current command is preserved."
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; ellama
-(setopt ellama-language "English")
-(setopt ellama-auto-scroll t)
-(setopt ellama-session-auto-save nil)
-(require 'llm-ollama)
-(setq default-llm (make-llm-ollama
-  :chat-model "mistral" :embedding-model "mistral"))
-(setopt ellama-provider default-llm)
-(setopt ellama-providers
-  '(("mistral" . default-llm)
-    ("llama3.1:8b" . (make-llm-ollama
-     :chat-model "llama3.1:8b" :embedding-model "llama3.1:8b"))))
+(use-package ellama
+  ;; send last message in chat buffer with C-c C-c
+  :hook (org-ctrl-c-ctrl-c-final . ellama-chat-send-last-message)
+  :init
+  (setopt ellama-spinner-enabled t)
+  (setopt ellama-language "English")
+  (setopt ellama-auto-scroll t)
+  (setopt ellama-session-auto-save nil)
+  (require 'llm-ollama)
+  (setq default-llm (make-llm-ollama
+    :chat-model "mistral" :embedding-model "mistral"))
+  (setopt ellama-provider default-llm)
+  (setopt ellama-providers
+    '(("mistral" . default-llm)
+      ("llama3.1:8b" . (make-llm-ollama
+        :chat-model "llama3.1:8b" :embedding-model "llama3.1:8b")))))
 
 ;; shell-mode
-
 (require 'shell)
 
 (define-key shell-mode-map [(control P)] (lambda () 
