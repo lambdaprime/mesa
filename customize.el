@@ -243,7 +243,11 @@ passed then the current command is preserved."
   ;(setq default-llm (make-llm-ollama
   ;  :chat-model "mistral"
   ;  :embedding-model "mistral"))
+  ;; Change default Ollama provider from local to remote
+  ;; Default Ollama provider is used by (ellama-get-ollama-model-name) to
+  ;; list available Ollama models
   ;(setopt ellama-provider (make-llm-ollama
+  ;  :host "192.168.0.112"
   ;  :port 8080))
   (setopt ellama-providers
     '(("sl-mistral" . (make-llm-ollama
