@@ -231,20 +231,60 @@ passed then the current command is preserved."
   (setopt ellama-spinner-enabled t)
   (setopt ellama-language "English")
   (setopt ellama-auto-scroll t)
-  (setopt ellama-session-auto-save nil)
+  (setopt ellama-tools-allow-all nil)
+  (setopt ellama-chat-display-action-function #'display-buffer-full-frame)
+  ;(setopt ellama-session-auto-save nil)
+  (setopt ellama-blueprints
+   '((:act "Commit changes reviewer"
+      :prompt "Review following commit changes. When making suggestions always include original lines.\12In the end of the review generate a commit message.\12"
+      :for-devs t)))
   (require 'llm-ollama)
-  (setq default-llm (make-llm-ollama
-    :chat-model "mistral" :embedding-model "mistral"))
-  (setopt ellama-provider default-llm)
+  (require 'llm-openai)
+  ;(setq default-llm (make-llm-ollama
+  ;  :chat-model "mistral"
+  ;  :embedding-model "mistral"))
+  ;(setopt ellama-provider (make-llm-ollama
+  ;  :port 8080))
   (setopt ellama-providers
-    '(("mistral" . default-llm)
-      ("llama3.1:8b" . (make-llm-ollama
-        :chat-model "llama3.1:8b" :embedding-model "llama3.1:8b")))))
+    '(("sl-mistral" . (make-llm-ollama
+        :chat-model "mistral"
+        :port 8080
+        :embedding-model "mistral"))
+      ("sl-devstral-small-2" . (make-llm-ollama
+        :chat-model "devstral-small-2:latest"
+        :port 8080
+        :embedding-model "devstral-small-2:latest"))
+      ("sl-qwen3-coder:30b" . (make-llm-ollama
+        :chat-model "qwen3-coder:30b"
+        :port 8080
+        :embedding-model "qwen3-coder:30b"))
+      ("sl-llama3.1:8b" . (make-llm-ollama
+        :chat-model "llama3.1:8b"
+        :port 8080
+        :embedding-model "llama3.1:8b"))
+      ("sl-ministral-3:8b" . (make-llm-ollama
+        :chat-model "ministral-3:8b"
+        :port 8080
+        :embedding-model "ministral-3:8b"))
+      ("sl-deepseek-r1:8b" . (make-llm-ollama
+        :chat-model "deepseek-r1:8b"
+        :default-chat-non-standard-params '(("think" . t))
+        :port 8080))
+      ("sl-nemotron-3-nano-30b-a3b" . (make-llm-ollama
+        :chat-model "nvidia/nemotron-3-nano-30b-a3b"
+        :port 8080
+        :embedding-model "nvidia/nemotron-3-nano-30b-a3b"))
+      ;("openai-model-example" . (make-llm-openai-compatible
+      ;  :chat-model "example"
+      ;  :key "xxxxxx"
+      ;  :url "https://openai.com/example/v1"))
+      )))
 
 ;; shell-mode
 (require 'shell)
 
 (define-key shell-mode-map [(control P)] (lambda () 
-  "Copy full path to currently selected file to clipboard."
+  "Copy full path of current working directory to clipboard (works in shell-mode)"
   (interactive)
   (copy-to-clipboard (file-truename default-directory))))
+
