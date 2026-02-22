@@ -150,3 +150,11 @@ d:/Program Files/GnuWin32 => /cygdrive/d/Program Files/GnuWin32"
   (let ((s (point)))
     (end-of-line)
     (buffer-substring-no-properties s (point))))
+
+(defun read-file (path)
+  "Return the contents of PATH as a string, or signal a helpful error."
+  (unless (file-exists-p path)
+    (error "read-file: file not found: %s" path))
+  (with-temp-buffer
+    (insert-file-contents path)
+    (buffer-string)))

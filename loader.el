@@ -26,8 +26,8 @@
 (let ((mesa-dir (substring (pwd) 10)))
   (add-to-list 'load-path mesa-dir))
 
-(load "customize.el")
 (load "utils.el")
+(load "customize.el")
 (load "start-up.el")
 (load "global-keys.el")
 (load "dired-keys.el")

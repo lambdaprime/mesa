@@ -179,10 +179,17 @@ passed then the current command is preserved."
   (setopt ellama-tools-allow-all nil)
   (setopt ellama-chat-display-action-function #'display-buffer-full-frame)
   ;(setopt ellama-session-auto-save nil)
-  (setopt ellama-blueprints
-   '((:act "Commit changes reviewer"
-      :prompt "Review following commit changes. When making suggestions always include original lines.\12In the end of the review generate a commit message.\12"
-      :for-devs t)))
+  (let ((home (file-name-directory load-file-name)))
+    (setopt ellama-blueprints
+     `((:act "Commit changes reviewer"
+        :prompt "Review following commit changes. When making suggestions always include original lines.\12In the end of the review generate a commit message.\12"
+        :for-devs t)
+       (:act "duke"
+        :prompt ,(read-file (concat home "/prompts/duke.txt"))
+        :for-devs t)
+       (:act "elisp"
+        :prompt "You are ELISP software developer\12\12"
+        :for-devs t))))
   (require 'llm-ollama)
   (require 'llm-openai)
   ;(setq default-llm (make-llm-ollama
