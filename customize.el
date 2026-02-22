@@ -58,64 +58,9 @@
 ;; auto-save in the file itself rather than into auto-save directory
 (setq auto-save-visited-file-name t)
 
+(load "mesa-theme.el")
 (custom-set-variables
- '(blink-cursor-mode nil)
- ;; Copy/Paste like in Windows
- '(cua-mode t nil (cua-base))
- '(inhibit-startup-screen t)
- '(ls-lisp-dirs-first t)
- '(ls-lisp-verbosity nil)
- '(dired-dwim-target t)
- '(dired-auto-revert-buffer t)
- '(make-backup-files nil)
- '(tooltip-mode nil)
- ;; turn off menu bar at the top
- '(menu-bar-mode nil)
- '(tool-bar-mode nil)
- '(org-support-shift-select t)
- '(org-replace-disputed-keys t)
- '(org-startup-folded t)
- ;; do not put silent newline into files on save
- '(mode-require-final-newline nil)
- '(Buffer-menu-mode-width 2)
- '(Buffer-menu-buffer+size-width 15))
-
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-  '(default 
-    ((t 
-      (:inherit nil
-        :stipple nil
-        :background "#A9A28F"
-        :foreground "black"
-        :inverse-video nil
-        :box nil
-        :strike-through nil
-        :overline nil
-        :underline nil
-        :slant normal
-        :weight normal
-        :height 100
-        :width normal
-        :foundry "unknown"
-        :family "Monospace"))))
-  '(fringe 
-    ((
-     ((class color) 
-      (background light)) 
-     (:background "gray20")))))
-
-;; Color for blocks in org-mode by default very dark, changing it to be more lighter
-(custom-set-faces
- '(org-block-begin-line
-   ((t (:underline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF" :extend t))))
- '(org-block
-   ((t (:background "#b9b6ac" :extend t))))
- '(org-block-end-line
-   ((t (:overline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF" :extend t)))))
+  '(custom-enabled-themes '(mesa)))
 
 ;; visit file or directory in current dired buffer 
 ;; instead of creating a new one
