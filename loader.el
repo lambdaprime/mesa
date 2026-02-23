@@ -36,4 +36,5 @@
 (load "advices.el")
 (load "arc-keys.el")
 (load "favourites.el")
+(load "customize-ellama.el")
 
