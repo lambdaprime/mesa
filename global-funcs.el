@@ -84,8 +84,16 @@
     (replace-match "\n" nil t)
     (goto-line 0)))
 
-(defun shell-here ()
-  "Replaces selected region with shell command output"
+(defun scor ()
+  "Call shell-command-on-region. Supports normal and CUA rectangular regions."
+  (interactive)
+  (let ((cmd (read-shell-command "Shell command: ")))
+    (if cua-rectangle-mark-mode
+      (cua-shell-command-on-rectangle nil cmd)
+      (shell-command-on-region (region-beginning) (region-end) cmd))))
+
+(defun scor-replace ()
+  "Call shell-command-on-region and replace selected region with shell command output"
   (interactive)
   (shell-command-on-region (region-beginning) (region-end)
    (read-shell-command "Shell command: ") (current-buffer) t))
