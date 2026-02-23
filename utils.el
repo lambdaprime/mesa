@@ -158,3 +158,9 @@ d:/Program Files/GnuWin32 => /cygdrive/d/Program Files/GnuWin32"
   (with-temp-buffer
     (insert-file-contents path)
     (buffer-string)))
+
+(defun ask-directory-path()
+  (interactive)
+  (expand-file-name
+    (file-name-as-directory
+      (read-directory-name "Directory path: " (dired-dwim-target-directory)))))

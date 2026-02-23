@@ -236,6 +236,11 @@ passed then the current command is preserved."
       ;  :url "https://openai.com/example/v1"))
       )))
 
+(defun ellama-sessions-directory ()
+  "Set directory where sessions are stored"
+  (interactive)
+  (setopt ellama-sessions-directory (concat (ask-directory-path) "/ellama-sessions")))
+
 ;; shell-mode
 (require 'shell)
 
