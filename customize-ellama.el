@@ -35,11 +35,14 @@
   ;(setopt ellama-session-auto-save nil)
   (let ((home (file-name-directory load-file-name)))
     (setopt ellama-blueprints
-     `((:act "Commit changes reviewer"
-        :prompt "Review following commit changes. When making suggestions always include original lines.\12In the end of the review generate a commit message.\12"
+     `((:act "codereview"
+        :prompt ,(read-file (concat home "/prompts/codereview.org"))
         :for-devs t)
        (:act "duke"
-        :prompt ,(read-file (concat home "/prompts/duke.txt"))
+        :prompt ,(read-file (concat home "/prompts/duke.org"))
+        :for-devs t)
+       (:act "metrics"
+        :prompt ,(read-file (concat home "/prompts/metrics.org"))
         :for-devs t)
        (:act "elisp"
         :prompt "You are ELISP software developer\12\12"
