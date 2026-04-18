@@ -31,6 +31,8 @@
   (setopt ellama-language "English")
   (setopt ellama-auto-scroll t)
   (setopt ellama-tools-allow-all nil)
+  ;; do not wrap paragraphs
+  (setopt ellama-fill-paragraphs nil)
   (setopt ellama-chat-display-action-function #'display-buffer-full-frame)
   ;(setopt ellama-session-auto-save nil)
   (let ((home (file-name-directory load-file-name)))
@@ -59,7 +61,11 @@
   ;  :host "192.168.0.112"
   ;  :port 8080))
   (setopt ellama-providers
-    '(("sl-mistral" . (make-llm-ollama
+    '(("sl" . (make-llm-ollama
+        :port 8080))
+      ("ollama" . (make-llm-ollama
+        :port 11434))
+      ("sl-mistral" . (make-llm-ollama
         :chat-model "mistral"
         :port 8080
         :embedding-model "mistral"))
@@ -97,3 +103,4 @@
   "Set directory where sessions are stored"
   (interactive)
   (setopt ellama-sessions-directory (concat (ask-directory-path) "/ellama-sessions")))
+
