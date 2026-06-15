@@ -92,6 +92,13 @@
       (cua-shell-command-on-rectangle nil cmd)
       (shell-command-on-region (region-beginning) (region-end) cmd))))
 
+(defun scor-col-sum ()
+  "Sum all numbers inside selected CUA rectangular region."
+  (interactive)
+  (if cua-rectangle-mark-mode
+    (cua-shell-command-on-rectangle nil
+      "jeval -e 'out.println(stdin.lines().mapToDouble(Double::parseDouble).sum())'")))
+
 (defun scor-replace ()
   "Call shell-command-on-region and replace selected region with shell command output"
   (interactive)
