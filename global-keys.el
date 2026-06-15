@@ -30,6 +30,7 @@
 (global-set-key [(delete)] 'delete-char)
 (global-set-key [(control +)] 'text-scale-increase)
 (global-set-key [(control -)] 'text-scale-decrease)
+(global-set-key [(control shift X)] 'erase-buffer)
 
 (add-hook 'java-mode-hook (lambda ()
   (define-key java-mode-map "\C-d"
@@ -194,4 +195,3 @@
 (global-set-key (kbd "C-6") (lambda ()
   (interactive)
   (switch-to-window 5)))
-
